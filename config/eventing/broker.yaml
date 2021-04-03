@@ -1,0 +1,11 @@
+apiVersion: eventing.knative.dev/v1
+kind: Broker
+metadata:
+  name: health-broker
+  namespace: kubecon
+spec:
+  config:
+    apiVersion: v1
+    kind: ConfigMap
+    name: config-br-default-channel
+    namespace: knative-eventing

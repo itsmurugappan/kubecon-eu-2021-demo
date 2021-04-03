@@ -1,0 +1,83 @@
+apiVersion: sources.knative.dev/v1
+kind: SinkBinding
+metadata:
+  name: bind-fitbitsource
+  namespace: kubecon
+spec:
+  subject:
+    apiVersion: serving.knative.dev/v1
+    kind: Configuration
+    selector:
+      matchLabels:
+        serving.knative.dev/service: fitbit
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: health-broker
+  ceOverrides:
+    extensions:
+      sink: bound
+---
+apiVersion: sources.knative.dev/v1
+kind: SinkBinding
+metadata:
+  name: bind-runkeepersource
+  namespace: kubecon
+spec:
+  subject:
+    apiVersion: serving.knative.dev/v1
+    kind: Configuration
+    selector:
+      matchLabels:
+        serving.knative.dev/service: runkeeper
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: health-broker
+  ceOverrides:
+    extensions:
+      sink: bound
+---
+apiVersion: sources.knative.dev/v1
+kind: SinkBinding
+metadata:
+  name: bind-stravasource
+  namespace: kubecon
+spec:
+  subject:
+    apiVersion: serving.knative.dev/v1
+    kind: Configuration
+    selector:
+      matchLabels:
+        serving.knative.dev/service: strava
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: health-broker
+  ceOverrides:
+    extensions:
+      sink: bound
+---
+apiVersion: sources.knative.dev/v1
+kind: SinkBinding
+metadata:
+  name: bind-dataingest
+  namespace: kubecon
+spec:
+  subject:
+    apiVersion: batch/v1
+    kind: Job
+    selector:
+      matchLabels:
+        app: health-data-ingest
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: health-broker
+  ceOverrides:
+    extensions:
+      sink: bound

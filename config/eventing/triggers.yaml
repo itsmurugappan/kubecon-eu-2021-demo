@@ -1,0 +1,143 @@
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: run-trigger
+  namespace: kubecon
+spec:
+  broker: health-broker
+  filter:
+    attributes:
+      type: health.run.type
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: run
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: walk-trigger
+  namespace: kubecon
+spec:
+  broker: health-broker
+  filter:
+    attributes:
+      type: health.walk.type
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: walk
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: elliptical-trigger
+  namespace: kubecon
+spec:
+  broker: health-broker
+  filter:
+    attributes:
+      type: health.elliptical.type
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: elliptical
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: ride-trigger
+  namespace: kubecon
+spec:
+  broker: health-broker
+  filter:
+    attributes:
+      type: health.ride.type
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: ride
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: step-trigger
+  namespace: kubecon
+spec:
+  broker: health-broker
+  filter:
+    attributes:
+      type: health.step.type
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: steps
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: id-trigger
+  namespace: kubecon
+spec:
+  broker: health-broker
+  filter:
+    attributes:
+      type: health.id.type
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: id
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: fitbit-trigger
+  namespace: kubecon
+spec:
+  broker: health-broker
+  filter:
+    attributes:
+      type: health.fitbit.type
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: fitbit
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: strava-trigger
+  namespace: kubecon
+spec:
+  broker: health-broker
+  filter:
+    attributes:
+      type: health.strava.type
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: strava
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: runkeeper-trigger
+  namespace: kubecon
+spec:
+  broker: health-broker
+  filter:
+    attributes:
+      type: health.runkeeper.type
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: runkeeper
