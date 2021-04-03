@@ -1,3 +1,8 @@
+
+kubectl run -it --rm --image=mysql:5.6 -n kubecon --restart=Never mysql-client -- mysql -h mysql -ppassword
+
+CREATE DATABASE health;
+
 create table steps(
    steps_id INT NOT NULL AUTO_INCREMENT,
    steps INT NOT NULL,
@@ -21,5 +26,3 @@ create table activity(
    activity_date DATE,
    PRIMARY KEY ( id )
 );
-
-kubectl run -it --rm --image=docker.repo1.uhc.com/mysql:5.6 -n mysql-client --restart=Never mysql-client -- mysql -h mysql.kubecon -ppassword
