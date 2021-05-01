@@ -1,13 +1,20 @@
 # Health Device and Apps Date integration with Cloud Events and Knative Eventing
 
-This repo was developed for the demo at kubecon Europe 2021
+This repo was developed for the demo at kubecon Europe 2021.
+
+Talk : Event Processing at Optum, the cloud events way
+
+### Use Case
+
+Processing data from various health devices into a common format using cloud events and knative
+
+![](./images/health.jpg)
 
 ### Pre Req
 
 To run this app you need the below
 
 * Knative Serving and Eventing
-* KO
 
 ### Install Mysql and Grafana
 
@@ -28,13 +35,11 @@ Import the dashboard from config/grafana-dashboard.yaml
 ### Deploy Knative Artifacts
 
 ```
-export KO_DOCKER_REPO=<your git repo>
-
 kubectl apply -f config/rb.yaml
 
-ko apply -RBf serving/
+kubectl apply -Rf serving/
 
-ko apply -RBf eventing/
+kubectl apply -Rf eventing/
 ```
 
 ### Triggering the flow
@@ -51,7 +56,7 @@ curl "http://health-data-ingest-kubecon.${KN_DOMAIN}/?labels=app=health-data-ing
 
 ### Dashboard
 
-![](./images/dashboard.jpg)
+![](./images/dashboard.png)
 
 
 

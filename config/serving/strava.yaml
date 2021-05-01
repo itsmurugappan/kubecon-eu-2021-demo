@@ -1,0 +1,35 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  annotations:
+    networking.knative.dev/disableAutoTLS: "true"
+  creationTimestamp: null
+  name: strava
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+      creationTimestamp: null
+      name: strava-5c164c55-4b78-41db-821d-2a87ec31ffe4
+    spec:
+      containerConcurrency: 0
+      containers:
+      - image: ghcr.io/itsmurugappan/strava
+        name: user-container
+        ports:
+        - containerPort: 0
+        readinessProbe:
+          successThreshold: 1
+          tcpSocket:
+            port: 0
+        resources:
+          limits:
+            cpu: 60m
+            memory: 512M
+          requests:
+            cpu: 30m
+            memory: 128M
+      enableServiceLinks: false
+      timeoutSeconds: 300
+status: {}

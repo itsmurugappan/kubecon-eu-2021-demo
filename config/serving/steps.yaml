@@ -1,0 +1,35 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  annotations:
+    networking.knative.dev/disableAutoTLS: "true"
+  creationTimestamp: null
+  name: steps
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+      creationTimestamp: null
+      name: steps-abcc5883-3831-4ee5-a81d-1ef2c32b99ca
+    spec:
+      containerConcurrency: 0
+      containers:
+      - image: ghcr.io/itsmurugappan/steps
+        name: user-container
+        ports:
+        - containerPort: 0
+        readinessProbe:
+          successThreshold: 1
+          tcpSocket:
+            port: 0
+        resources:
+          limits:
+            cpu: 60m
+            memory: 512M
+          requests:
+            cpu: 30m
+            memory: 128M
+      enableServiceLinks: false
+      timeoutSeconds: 300
+status: {}

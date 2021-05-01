@@ -1,0 +1,35 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  annotations:
+    networking.knative.dev/disableAutoTLS: "true"
+  creationTimestamp: null
+  name: fitbit
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+      creationTimestamp: null
+      name: fitbit-c80c2b0b-1374-4f6a-967e-9359f8227d46
+    spec:
+      containerConcurrency: 0
+      containers:
+      - image: ghcr.io/itsmurugappan/fitbit
+        name: user-container
+        ports:
+        - containerPort: 0
+        readinessProbe:
+          successThreshold: 1
+          tcpSocket:
+            port: 0
+        resources:
+          limits:
+            cpu: 60m
+            memory: 512M
+          requests:
+            cpu: 30m
+            memory: 128M
+      enableServiceLinks: false
+      timeoutSeconds: 300
+status: {}

@@ -1,0 +1,40 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  annotations:
+    networking.knative.dev/disableAutoTLS: "true"
+  creationTimestamp: null
+  labels:
+    RunAsJob: "True"
+  name: health-data-ingest
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+      creationTimestamp: null
+      name: health-data-ingest-a7a83a59-7ac6-4d52-aff8-fb809702cc90
+    spec:
+      containerConcurrency: 0
+      containers:
+      - env:
+        - name: JOB_SPEC
+          value: '{"Image":"ghcr.io/itsmurugappan/health-data-ingest","Name":"health-data-ingest","RunAsJob":true}'
+        image: ghcr.io/itsmurugappan/job-trigger:v6.3
+        name: user-container
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          successThreshold: 1
+          tcpSocket:
+            port: 0
+        resources:
+          limits:
+            cpu: 60m
+            memory: 512M
+          requests:
+            cpu: 30m
+            memory: 128M
+      enableServiceLinks: false
+      timeoutSeconds: 300
+status: {}

@@ -1,0 +1,38 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  annotations:
+    networking.knative.dev/disableAutoTLS: "true"
+  creationTimestamp: null
+  name: run
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+      creationTimestamp: null
+      name: run-474a768b-ab0b-4226-97a8-531b077c5358
+    spec:
+      containerConcurrency: 0
+      containers:
+      - env:
+        - name: Activity_Name
+          value: run
+        image: ghcr.io/itsmurugappan/activity
+        name: user-container
+        ports:
+        - containerPort: 0
+        readinessProbe:
+          successThreshold: 1
+          tcpSocket:
+            port: 0
+        resources:
+          limits:
+            cpu: 60m
+            memory: 512M
+          requests:
+            cpu: 30m
+            memory: 128M
+      enableServiceLinks: false
+      timeoutSeconds: 300
+status: {}

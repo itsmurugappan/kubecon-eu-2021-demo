@@ -3,6 +3,8 @@ kubectl run -it --rm --image=mysql:5.6 -n kubecon --restart=Never mysql-client -
 
 CREATE DATABASE health;
 
+use health;
+
 create table steps(
    steps_id INT NOT NULL AUTO_INCREMENT,
    steps INT NOT NULL,
