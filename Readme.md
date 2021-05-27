@@ -1,4 +1,4 @@
-# Health Device Data consolidation with Cloud Events and Knative Eventing
+# Health Device Data aggregation with Cloud Events and Knative Eventing
 
 This repo was developed for the demo at kubecon Europe 2021.
 
