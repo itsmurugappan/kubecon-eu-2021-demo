@@ -2,7 +2,7 @@
 
 This repo was developed for the demo at kubecon Europe 2021.
 
-Talk : Event Processing at Optum, the cloud events way
+Talk : [Event Processing at Optum, the cloud events way](https://youtu.be/gXuW9mvj6xM)
 
 ### Use Case
 
